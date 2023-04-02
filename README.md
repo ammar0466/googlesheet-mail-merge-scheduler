@@ -40,14 +40,16 @@ To create a template for your mail merge, you'll need to use Gmail's drafts feat
 
 For example, if your Google Sheet has columns with headers "First Name" and "Last Name", you can create a draft email with the following content:
 
-Subject: Welcome, {{First Name}}!
+> Subject: Welcome, {{First Name}}!
+>
+> Hi {{First Name}} {{Last Name}},
+>
+> Welcome to our community! We are thrilled to have you with us.
+>
+> Best regards,
+>
+> Your Team
 
-Hi {{First Name}} {{Last Name}},
-
-Welcome to our community! We are thrilled to have you with us.
-
-Best regards,
-Your Team
 
 When the mail merge runs, it will replace the `{{First Name}}` and `{{Last Name}}` placeholders with the actual data from the corresponding cells in the Google Sheet.
 
