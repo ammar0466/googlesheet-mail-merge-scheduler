@@ -61,12 +61,14 @@ function sendEmails(columnIndex, draftId, schedule, scheduledDateTime) {
 
     const email = data[i][columnIndex];
     let customizedBody = messageBody;
+    let customizedSubject = message.getSubject();
     headers.forEach((header, index) => {
       const value = data[i][index];
       customizedBody = replaceAll(customizedBody, `{{${header}}}`, value);
+      customizedSubject = replaceAll(customizedSubject, `{{${header}}}`, value);
     });
     const mailOptions = {
-      subject: message.getSubject(),
+      subject: customizedSubject,
       htmlBody: customizedBody
     };
 
