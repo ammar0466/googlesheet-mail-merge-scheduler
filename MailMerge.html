@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      label { display: block; margin-top: 15px; }
+      select, button { width: 100%; }
+    </style>
+  </head>
+  <body>
+    <label for="triggerBalance">Schedule Count(Max 20):</label>
+    <span id="triggerBalance"></span>
+    <button id="deleteOldTriggers">Delete Old Schedule</button>
+
+
+
+
+
+    <label for="recipientColumn">Recipient Column:</label>
+    <select id="recipientColumn"></select>
+    <label for="draftEmail">Draft Email:</label>
+    <select id="draftEmail"></select>
+
+    <label for="schedule">Option:</label>
+    <select id="schedule">
+      <option value="0">Send now</option>
+      <option value="1">Schedule</option>
+    </select>
+
+    <div id="scheduleDateTime" style="display: none;">
+      <label for="dateTime">Date and Time:</label>
+      <input type="datetime-local" id="dateTime" />
+    </div>
+
+    <button id="startMailMerge" style="margin-top: 15px;">Start Mail Merge</button>
+
+    <script>
+      
+      
+      function loadOptions(selectElementId, optionsArray) {
+        const selectElement = document.getElementById(selectElementId);
+        optionsArray.forEach(function (item, index) {
+          const option = document.createElement('option');
+          option.value = index;
+          option.text = item;
+          selectElement.add(option);
+        });
+      }
+      
+      function onSuccessColumnHeaders(headers) {
+        loadOptions('recipientColumn', headers);
+      }
+      
+      // function onSuccessGmailDrafts(drafts) {
+      //   loadOptions('draftEmail', drafts.drafts.map(draft => draft.message.subject));
+      // }
+
+      function onSuccessGmailDrafts(drafts) {
+        const selectElement = document.getElementById('draftEmail');
+        drafts.forEach(function (draft) {
+          const option = document.createElement('option');
+          option.value = draft.id;
+          option.text = draft.subject;
+          selectElement.add(option);
+        });
+      }
+
+      function onSuccessTriggerBalance(triggerBalance) {
+        document.getElementById("triggerBalance").innerText = triggerBalance;
+      }
+
+      function updateTriggerBalance() {
+        google.script.run
+          .withSuccessHandler(onSuccessTriggerBalance)
+          .getTriggerBalance();
+      }
+
+      document.getElementById("deleteOldTriggers").addEventListener("click", function () {
+        google.script.run.deleteOldTriggers();
+        updateTriggerBalance();
+      });
+
+      updateTriggerBalance();
+
+      document.getElementById("deleteOldTriggers").addEventListener("click", function () {
+        google.script.run.withSuccessHandler(updateTriggerBalance).deleteOldTriggers();
+      });
+
+      document.getElementById('schedule').addEventListener('change', function () {
+        const startMailMergeButton = document.getElementById('startMailMerge');
+        if (this.value === '1') {
+          document.getElementById('scheduleDateTime').style.display = 'block';
+          startMailMergeButton.innerText = 'Schedule Mail Merge';
+        } else {
+          document.getElementById('scheduleDateTime').style.display = 'none';
+          startMailMergeButton.innerText = 'Start Mail Merge';
+        }
+      });
+
+
+      
+      google.script.run.withSuccessHandler(onSuccessColumnHeaders).getColumnHeaders();
+      google.script.run.withSuccessHandler(onSuccessGmailDrafts).getGmailDrafts();
+      
+      document.getElementById('startMailMerge').addEventListener('click', function () {
+        const columnIndex = document.getElementById('recipientColumn').value;
+        const draftId = document.getElementById('draftEmail').value;
+        const schedule = document.getElementById('schedule').value === '1';
+        const scheduledDateTime = document.getElementById('dateTime').value;
+        
+        google.script.run.sendEmails(columnIndex, draftId, schedule, scheduledDateTime);
+        google.script.host.close();
+      });
+    </script>
+  </body>
+</html>
