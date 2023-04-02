@@ -43,3 +43,18 @@ To use the script, you will need a Google API Key and a Google Client ID. Follow
 5. Click on `Start Mail Merge` to begin the mail merge process. The script will send or schedule the emails based on your selections, and update the Google Sheet with the merge status.
 
 **Note:** The scheduled emails are limited to a maximum of 20 per project due to Google Apps Script trigger limitations. You can delete old schedules by clicking the `Delete Old Schedule` button in the Mail Merge dialog.
+
+## Future Roadmap
+
+:white_large_square: 1. Add batch scheduling like YAMM to schedule more than 20 emails  
+:white_large_square: 2. Add progress bar  
+:white_large_square: 3. Add custom email tracking (opened or not)  
+:white_large_square: 4. Templates Gallery: Create a gallery of customizable email templates for various use cases  
+:white_large_square: 5. Attachments Support: Allow users to include file attachments from Google Drive or local storage  
+:white_large_square: 6. A/B Testing: Implement A/B testing functionality for optimizing email content  
+:white_large_square: 7. Analytics Dashboard: Develop a dashboard to display key email performance metrics  
+:white_large_square: 8. Conditional Formatting: Introduce conditional formatting in email templates  
+:white_large_square: 9. Auto Follow-up: Enable automatic follow-up emails for non-responsive recipients  
+:white_large_square: 10. Integration with Other Google Workspace Apps: Integrate with Google Calendar, Google Forms, and other apps
+
+
