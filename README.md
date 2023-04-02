@@ -30,6 +30,29 @@ To use the script, you will need a Google API Key and a Google Client ID. Follow
 6. Click on `+ CREATE CREDENTIALS` and select `API key`. Copy the generated API key and replace the placeholder `YOUR_API_KEY` in the `code.gs` file.
 7. Click on `+ CREATE CREDENTIALS` again and select `OAuth client ID`. Choose `Web application` as the application type, and enter a name for the client. Copy the generated client ID and replace the placeholder `YOUR_CLIENT_ID` in the `code.gs` file.
 
+## Creating a Template from Draft Email
+
+To create a template for your mail merge, you'll need to use Gmail's drafts feature. Follow these steps to create a template using draft emails:
+
+1. Compose a new email in Gmail.
+2. Use placeholders for the dynamic content you want to include in your email. The placeholders should be wrapped in double curly braces, like `{{header}}`, `{{header2}}`, etc.
+3. Save the email as a draft by closing the email composer without sending it.
+
+For example, if your Google Sheet has columns with headers "First Name" and "Last Name", you can create a draft email with the following content:
+
+Subject: Welcome, {{First Name}}!
+
+Hi {{First Name}} {{Last Name}},
+
+Welcome to our community! We are thrilled to have you with us.
+
+Best regards,
+Your Team
+
+When the mail merge runs, it will replace the `{{First Name}}` and `{{Last Name}}` placeholders with the actual data from the corresponding cells in the Google Sheet.
+
+Remember to save the email as a draft and not to send it. The mail merge script will use the draft as a template when sending out the emails.
+
 ## How to Use the Mail Merge Script
 
 1. Save and deploy the Apps Script project by clicking `File > Save` and `Publish > Deploy as web app` in the Apps Script editor.
