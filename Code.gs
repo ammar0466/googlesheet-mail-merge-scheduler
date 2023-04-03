@@ -1,3 +1,7 @@
+/**
+ * Author: ammar0466
+ * Description: Google Sheets Mail Merge Scheduler
+ */
 const CLIENT_ID = 'YOUR_CLIENT_ID';
 const API_KEY = 'YOUR_API_KEY';
 
