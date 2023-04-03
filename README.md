@@ -71,9 +71,11 @@ Remember to save the email as a draft and not to send it. The mail merge script 
 
 ## Features
 
-:white_check_mark: Send multiple row
-:white_check_mark: Schedule by date and time
-:white_check_mark: Placeholder on subject line
+:heavy_check_mark: Send multiple row
+
+:heavy_check_mark: Schedule by date and time
+
+:heavy_check_mark: Placeholder on subject line
 
 ## Future Roadmap
 
