@@ -142,14 +142,16 @@ function sendScheduledEmail() {
     const message = draft.getMessage();
     const messageBody = message.getBody();
     let customizedBody = messageBody;
+    let customizedSubject = message.getSubject();
 
     getColumnHeaders().forEach((header, index) => {
       const value = sheet.getRange(rowIndex + 2, index + 1).getValue();
       customizedBody = replaceAll(customizedBody, `{{${header}}}`, value);
+      customizedSubject = replaceAll(customizedSubject, `{{${header}}}`, value);
     });
 
     const mailOptions = {
-      subject: message.getSubject(),
+      subject: customizedSubject,
       htmlBody: customizedBody
     };
 
@@ -164,6 +166,7 @@ function sendScheduledEmail() {
     });
   }
 }
+
 
 
 
