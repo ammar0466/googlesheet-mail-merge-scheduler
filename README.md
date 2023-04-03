@@ -69,6 +69,12 @@ Remember to save the email as a draft and not to send it. The mail merge script 
 
 **Note:** The scheduled emails are limited to a maximum of 20 per project due to Google Apps Script trigger limitations. You can delete old schedules by clicking the `Delete Old Schedule` button in the Mail Merge dialog.
 
+## Features
+
+:white_check_mark: Send multiple row
+:white_check_mark: Schedule by date and time
+:white_check_mark: Placeholder on subject line
+
 ## Future Roadmap
 
 :white_large_square: 1. Add batch scheduling like YAMM to schedule more than 20 emails  
@@ -81,5 +87,4 @@ Remember to save the email as a draft and not to send it. The mail merge script 
 :white_large_square: 8. Conditional Formatting: Introduce conditional formatting in email templates  
 :white_large_square: 9. Auto Follow-up: Enable automatic follow-up emails for non-responsive recipients  
 :white_large_square: 10. Integration with Other Google Workspace Apps: Integrate with Google Calendar, Google Forms, and other apps
-
-
+:white_large_square: 11. Add append cc to sheet
